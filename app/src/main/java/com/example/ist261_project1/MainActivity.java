@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // make http request with volley
-                RequestQueue queue = new RequestQueue(MainActivity.this);
+                RequestQueue queue = new RequestQueue(null, null);
                 String userByEmailUrl = "http://10.0.2.2:3000/api/users/email/";
 
                 JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, userByEmailUrl, null, new Response.Listener<JSONArray>() {
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                             String dbPassword = object.getString("pass");
                             if (dbPassword.equals(enteruser.getText().toString())) {
                                 // go to home screen
-                                Intent intent = new Intent(this, PostFeedActivity.class);
+                                Intent intent = new Intent(view.getContext(), PostFeedActivity.class);
                                 startActivity(intent);
                             } else {
                                 // error message
