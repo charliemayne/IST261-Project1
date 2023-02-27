@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     EditText enteruser;
     EditText enterpass;
     Button signIn;
+    TextView register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +46,9 @@ public class MainActivity extends AppCompatActivity {
 
                 // make http request with volley
                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-                String userByEmailUrl = "http://10.0.2.2:3000/api/users/username/" + enteruser.getText().toString();
+                String userByEmailOrUsername = "http://10.0.2.2:3000/api/users/" + enteruser.getText().toString();
 
-                JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, userByEmailUrl, null, new Response.Listener<JSONArray>() {
+                JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, userByEmailOrUsername, null, new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
@@ -55,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
 
                             // check entered password against stored password for this user
                             String dbPassword = object.getString("pass");
-                            Toast toast = Toast.makeText(getApplicationContext(), "working with json response", Toast.LENGTH_SHORT);
 
                             if (dbPassword.equals(enterpass.getText().toString())) {
                                 // go to home screen
@@ -82,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // add onCLick listener to
+        //register
 
     }
 
