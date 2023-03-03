@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.d("MainActivity", "Volley Error");
+                        enteruser.setError("User Not Found/Invalid Input");
                     }
                 });
 
