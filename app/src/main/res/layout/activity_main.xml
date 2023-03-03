@@ -42,7 +42,7 @@
         android:layout_height="56dp"
         android:backgroundTint="#2196F3"
         android:fontFamily="sans-serif-medium"
-        android:text="No Account? Register"
+        android:text="No Account? Register \nClick Here"
         android:textAlignment="center"
         android:textColor="#886E46"
         android:textSize="20sp"
