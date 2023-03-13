@@ -12,6 +12,7 @@ public class PostData {
         i += 1;
     }
 
+
     public String[] getPostContent()
     {
         return postContents;
