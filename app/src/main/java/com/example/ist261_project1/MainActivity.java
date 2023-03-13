@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
                         enteruser.setError("User Not Found/Invalid Input");
                     }
                 });
-
                 queue.add(request);
             }
         });
@@ -89,9 +88,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), RegisterActivity.class);
-
                 startActivity(intent);
-
             }
         });
 
