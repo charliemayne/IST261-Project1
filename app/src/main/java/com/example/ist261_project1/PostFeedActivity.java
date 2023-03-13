@@ -3,6 +3,7 @@ package com.example.ist261_project1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.Button;
 
 public class PostFeedActivity extends AppCompatActivity {
 

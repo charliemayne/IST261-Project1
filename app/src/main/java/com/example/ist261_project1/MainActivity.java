@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
     EditText enterpass;
     Button signIn;
     TextView register;
-    TextView registerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         signIn = findViewById(R.id.signInButton);
         enteruser = findViewById(R.id.enter_user);
         enterpass = findViewById(R.id.enter_password);
-        registerButton = findViewById(R.id.registerButton);
 
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // make http request with volley
                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-                String userByEmailOrUsername = "http://10.0.2.2:3000/api/users/" + enteruser.getText().toString();
+                String userByEmailOrUsername = "http://10.32.92.226:3000/api/users/" + enteruser.getText().toString();
 
                 JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, userByEmailOrUsername, null, new Response.Listener<JSONArray>() {
                     @Override
@@ -76,22 +74,21 @@ public class MainActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.d("MainActivity", "Volley Error");
-                        enteruser.setError("User Not Found/Invalid Input");
+                        Log.d("MainActivity", "Volley Error" + error.toString());
                     }
                 });
                 queue.add(request);
             }
         });
 
-        registerButton.setOnClickListener(new View.OnClickListener() {
+        // add onCLick listener to
+        register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), RegisterActivity.class);
                 startActivity(intent);
             }
         });
-
     }
 
 
