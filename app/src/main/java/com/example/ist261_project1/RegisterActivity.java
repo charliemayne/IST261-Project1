@@ -95,7 +95,7 @@ public class RegisterActivity extends AppCompatActivity {
                 newUser.setUsername(username);
                 newUser.setPassword(password);
 
-                String Url = "http://10.0.2.2:3000/api/users/";
+                String Url = "http://10.32.92.226:3000/api/users/";
 
                 RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
 
