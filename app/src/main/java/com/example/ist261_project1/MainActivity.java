@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         signIn = findViewById(R.id.signInButton);
         enteruser = findViewById(R.id.enter_user);
         enterpass = findViewById(R.id.enter_password);
+        register = findViewById(R.id.registerButton);
 
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -112,7 +112,7 @@ public class PostFeedActivity extends AppCompatActivity {
         TableLayout tl = (TableLayout) findViewById(R.id.main_table);
 
         TableRow tr_head = new TableRow(this);
-        tr_head.setId(999);
+        tr_head.setId(500);
         tr_head.setLayoutParams(new TableRow.LayoutParams(
                 TableRow.LayoutParams.MATCH_PARENT,
                 TableRow.LayoutParams.WRAP_CONTENT));
@@ -161,7 +161,7 @@ public class PostFeedActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("PostFeed", "Volley Error");
+                Log.d("PostFeed", "Volley Error" + error.toString());
             }
         });
         queue.add(requestCan);
@@ -175,6 +175,8 @@ public class PostFeedActivity extends AppCompatActivity {
             //Colors -----------------------
             int textColor = Color.GRAY;
             Typeface textStyle = Typeface.DEFAULT;
+
+            Log.d("post", finalPostContent[k]);
 
             TableRow tr = new TableRow(this);
             tr.setId(1000 + k);

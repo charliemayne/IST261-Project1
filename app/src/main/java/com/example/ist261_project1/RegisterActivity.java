@@ -72,6 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
                         throw new Exception();
                     }
 
+                    //fixme use jsonobjectrequest instead?
                     postDataUsingVolley(firstname, lastname, email, username, password);
 
                 }
@@ -87,6 +88,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
             private void postDataUsingVolley(String firstname, String lastname, String email, String username, String password) {
+
 
                 RegisterData newUser = new RegisterData();
                 newUser.setFirstname(firstname);
