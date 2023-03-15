@@ -72,7 +72,6 @@ public class RegisterActivity extends AppCompatActivity {
                         throw new Exception();
                     }
 
-                    //fixme use jsonobjectrequest instead?
                     postDataUsingVolley(firstname, lastname, email, username, password);
 
                 }
@@ -89,61 +88,31 @@ public class RegisterActivity extends AppCompatActivity {
 
             private void postDataUsingVolley(String firstname, String lastname, String email, String username, String password) {
 
+                // store new user data in hashmap
+                HashMap<String, String> params = new HashMap<String, String>();
+                params.put("username", username);
+                params.put("email", email);
+                params.put("first_name", firstname);
+                params.put("last_name", lastname);
+                params.put("pass", password);
 
-                RegisterData newUser = new RegisterData();
-                newUser.setFirstname(firstname);
-                newUser.setLastname(lastname);
-                newUser.setEmail(email);
-                newUser.setUsername(username);
-                newUser.setPassword(password);
-
+                // url to post new user
                 String Url = "http://" + MainActivity.PUBLIC_IP + ":3000/api/users/";
 
+                // make Volley post request
                 RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
 
-                StringRequest request = new StringRequest(Request.Method.POST, Url, new com.android.volley.Response.Listener<String>() {
+                JsonObjectRequest request = new JsonObjectRequest(Url, new JSONObject(params), new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(String response) {
-
-                        Toast.makeText(RegisterActivity.this, "Data added to API", Toast.LENGTH_SHORT).show();
-
-                        try {
-
-                            JSONObject respObj = new JSONObject(response);
-
-                            String firstname = respObj.getString("firstname");
-                            String lastname = respObj.getString("lastname");
-                            String email = respObj.getString("email");
-                            String username = respObj.getString("username");
-                            String password = respObj.getString("password");
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                    public void onResponse(JSONObject response) {
+                        // success message?
                     }
-                }, new com.android.volley.Response.ErrorListener() {
+                }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // method to handle errors.
-                        Toast.makeText(RegisterActivity.this, "Fail to get response = " + error, Toast.LENGTH_SHORT).show();
+                        error.printStackTrace();
                     }
-                }) {
-                    @Override
-                    protected Map<String, String> getParams() {
-                        Map<String, String> params = new HashMap<String, String>();
-
-                        params.put("firstname", newUser.getFirstname());
-                        params.put("lastname", newUser.getLastname());
-                        params.put("email", newUser.getEmail());
-                        params.put("user", newUser.getUsername());
-                        params.put("pass", newUser.getPassword());
-
-
-                        return params;
-
-                    }
-                };
-
+                });
 
                 queue.add(request);
             }
