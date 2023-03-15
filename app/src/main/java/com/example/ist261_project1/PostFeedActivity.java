@@ -130,7 +130,7 @@ public class PostFeedActivity extends AppCompatActivity {
     public void getAssetInfo() {
 
         RequestQueue queue = Volley.newRequestQueue(PostFeedActivity.this);
-        String Url = "http://10.32.92.226:3000/api/posts";
+        String Url = "http://" + MainActivity.PUBLIC_IP + ":3000/api/posts";
 
         JsonArrayRequest requestCan = new JsonArrayRequest(Request.Method.GET, Url, null, new Response.Listener<JSONArray>() {
             @Override

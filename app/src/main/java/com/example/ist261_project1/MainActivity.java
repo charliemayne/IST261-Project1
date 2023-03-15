@@ -25,6 +25,8 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String PUBLIC_IP = "10.32.108.159";
+
     EditText enteruser;
     EditText enterpass;
     Button signIn;
@@ -47,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // make http request with volley
                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-                String userByEmailOrUsername = "http://10.32.92.226:3000/api/users/" + enteruser.getText().toString();
+                String userByEmailOrUsername = "http://" + PUBLIC_IP + ":3000/api/users/" + enteruser.getText().toString();
 
                 JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, userByEmailOrUsername, null, new Response.Listener<JSONArray>() {
                     @Override
