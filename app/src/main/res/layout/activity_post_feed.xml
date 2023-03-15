@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
             tools:context=".ULDCheck">
 
+
             <TableLayout
                 android:id="@+id/main_table"
                 android:layout_width="0dp"
@@ -29,7 +30,7 @@
                 android:stretchColumns="0, 1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0">
@@ -37,13 +38,25 @@
 
             </TableLayout>
 
-
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/createPostButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="90dp"
+                android:clickable="true"
+                android:scaleType="center"
+                android:tint="#FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@android:drawable/ic_input_add" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </ScrollView>
 
+
+    </ScrollView>
 
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

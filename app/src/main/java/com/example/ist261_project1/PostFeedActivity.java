@@ -8,11 +8,14 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -22,15 +25,17 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
-import java.util.Objects;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PostFeedActivity extends AppCompatActivity {
 
@@ -125,6 +130,9 @@ public class PostFeedActivity extends AppCompatActivity {
 
         addRows(tl);
 
+        FloatingActionButton createButton = findViewById(R.id.createPostButton);
+        createButton.setOnClickListener(r -> createPost());
+
     }
 
     public void getAssetInfo() {
@@ -176,11 +184,11 @@ public class PostFeedActivity extends AppCompatActivity {
             int textColor = Color.GRAY;
             Typeface textStyle = Typeface.DEFAULT;
 
-            Log.d("post", finalPostContent[k]);
+            Log.d("Addrows", finalPostContent[k]);
 
             TableRow tr = new TableRow(this);
             tr.setId(1000 + k);
-            tr.setPadding(180,0,0,0);
+            tr.setPadding(50,0,0,0);
             tr.setLayoutParams(new TableRow.LayoutParams(
                     TableRow.LayoutParams.MATCH_PARENT,
                     TableRow.LayoutParams.WRAP_CONTENT));
@@ -196,7 +204,84 @@ public class PostFeedActivity extends AppCompatActivity {
             label_middle.setTextSize(18);
             tr.addView(label_middle);
 
+            tl.addView(tr, 0, new TableLayout.LayoutParams(
+                    TableLayout.LayoutParams.MATCH_PARENT,
+                    TableLayout.LayoutParams.WRAP_CONTENT));
+
         }
+
+    }
+
+
+    public void createPost()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("New Post");
+
+        EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        input.getBackground().setColorFilter(Color.parseColor("#167700"),
+                PorterDuff.Mode.SRC_ATOP);
+        builder.setView(input);
+
+        String postText = String.valueOf(input.getText());
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener()
+                {@Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        sendPost(postText);
+                    }
+                });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+
+    }
+
+    public void sendPost(String postText)
+    {
+        String Url = "http://" + MainActivity.PUBLIC_IP + ":3000/api/posts";
+
+        RequestQueue queue = Volley.newRequestQueue(PostFeedActivity.this);
+        StringRequest request = new StringRequest(Request.Method.POST, Url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject respObj = new JSONObject(response);
+
+                    String jsonContent = respObj.getString("content");
+                    int jsonUserId = respObj.getInt("user_id");
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // method to handle errors.
+                Log.d("Error", "Volley Error " + error.toString());
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+                params.put("content", postText);
+                params.put("user_id", String.valueOf(69));
+
+                return params;
+            }
+        };
+
+        queue.add(request);
 
     }
 
