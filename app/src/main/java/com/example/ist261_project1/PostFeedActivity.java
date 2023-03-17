@@ -25,6 +25,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -247,39 +248,27 @@ public class PostFeedActivity extends AppCompatActivity {
 
     public void sendPost(String postText)
     {
-        String Url = "http://" + MainActivity.PUBLIC_IP + ":3000/api/posts";
+        // store new user data in hashmap
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("content", postText);
 
+        // url to post new user
+        String Url = "http://" + MainActivity.PUBLIC_IP + ":3000/api/users/";
+
+        // make Volley post request
         RequestQueue queue = Volley.newRequestQueue(PostFeedActivity.this);
-        StringRequest request = new StringRequest(Request.Method.POST, Url, new Response.Listener<String>() {
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, Url, new JSONObject(params), new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject respObj = new JSONObject(response);
-
-                    String jsonContent = respObj.getString("content");
-                    int jsonUserId = respObj.getInt("user_id");
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            public void onResponse(JSONObject response) {
+                // success message?
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                // method to handle errors.
-                Log.d("Error", "Volley Error " + error.toString());
+                error.printStackTrace();
             }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-
-                params.put("content", postText);
-                params.put("user_id", String.valueOf(69));
-
-                return params;
-            }
-        };
+        });
 
         queue.add(request);
 
