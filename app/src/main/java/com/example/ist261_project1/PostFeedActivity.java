@@ -225,12 +225,11 @@ public class PostFeedActivity extends AppCompatActivity {
                 PorterDuff.Mode.SRC_ATOP);
         builder.setView(input);
 
-        String postText = String.valueOf(input.getText());
-
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener()
                 {@Override
                     public void onClick(DialogInterface dialog, int which)
                     {
+                        String postText = String.valueOf(input.getText());
                         sendPost(postText);
                     }
                 });
@@ -252,6 +251,7 @@ public class PostFeedActivity extends AppCompatActivity {
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("content", postText);
         params.put("user_id", "1");
+        Log.d("posttext", postText);
 
         // url to post new user
         String Url = "http://" + MainActivity.PUBLIC_IP + ":3000/api/posts/";
