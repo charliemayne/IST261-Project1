@@ -25,7 +25,7 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String PUBLIC_IP = "10.32.108.159";
+    public static final String PUBLIC_IP = "10.32.114.51";
 
     EditText enteruser;
     EditText enterpass;
