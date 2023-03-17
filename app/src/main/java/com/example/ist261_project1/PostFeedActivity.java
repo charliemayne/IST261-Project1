@@ -251,9 +251,10 @@ public class PostFeedActivity extends AppCompatActivity {
         // store new user data in hashmap
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("content", postText);
+        params.put("user_id", "1");
 
         // url to post new user
-        String Url = "http://" + MainActivity.PUBLIC_IP + ":3000/api/users/";
+        String Url = "http://" + MainActivity.PUBLIC_IP + ":3000/api/posts/";
 
         // make Volley post request
         RequestQueue queue = Volley.newRequestQueue(PostFeedActivity.this);
@@ -261,7 +262,7 @@ public class PostFeedActivity extends AppCompatActivity {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, Url, new JSONObject(params), new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                // success message?
+                Log.d("post", response.toString());
             }
         }, new Response.ErrorListener() {
             @Override
