@@ -105,7 +105,9 @@ public class RegisterActivity extends AppCompatActivity {
                 JsonObjectRequest request = new JsonObjectRequest(Url, new JSONObject(params), new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        // success message?
+                        // success message? send to sign in screen?
+                        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                        startActivity(intent);
                     }
                 }, new Response.ErrorListener() {
                     @Override
