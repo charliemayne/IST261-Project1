@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -189,7 +190,7 @@ public class PostFeedActivity extends AppCompatActivity {
 
             TableRow tr = new TableRow(this);
             tr.setId(1000 + k);
-            tr.setPadding(50,0,0,0);
+            tr.setPadding(20,50,0,50);
             tr.setLayoutParams(new TableRow.LayoutParams(
                     TableRow.LayoutParams.MATCH_PARENT,
                     TableRow.LayoutParams.WRAP_CONTENT));
@@ -199,8 +200,8 @@ public class PostFeedActivity extends AppCompatActivity {
             label_middle.setText(finalPostContent[k]);
             label_middle.setTextColor(textColor);
             label_middle.setTypeface(textStyle);
-            label_middle.setPaintFlags(label_middle.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-            label_middle.setPadding(0, 50, 0, 50);
+            label_middle.setWidth(TableRow.LayoutParams.MATCH_PARENT);
+            //label_middle.setPadding(0, 50, 0, 50);
             label_middle.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             label_middle.setTextSize(18);
             tr.addView(label_middle);
@@ -231,6 +232,7 @@ public class PostFeedActivity extends AppCompatActivity {
                     {
                         String postText = String.valueOf(input.getText());
                         sendPost(postText);
+                        commandRefresh();
                     }
                 });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -273,6 +275,51 @@ public class PostFeedActivity extends AppCompatActivity {
 
         queue.add(request);
 
+    }
+
+
+
+    public void commandRefresh() {
+
+        TableLayout tl = findViewById(R.id.main_table);
+
+        SwipeRefreshLayout swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+
+        index = 0;
+        postAmount = 0;
+
+        PostData d2 = new PostData();
+        Arrays.fill(d2.postContents, "");
+        d2.i = 0;
+
+        d1 = new PostData();
+
+        Runnable task = new Runnable() {
+            @SuppressLint("SetTextI18n")
+            public void run() {
+                addRows(tl);
+            }
+        };
+
+        try {
+            Handler handler = new Handler();
+            handler.postDelayed(task, 500);
+
+            tl.removeAllViewsInLayout();
+
+            createView();
+
+        }
+
+        catch (Exception Z)
+        {
+            Log.d("Refresh", "error");
+        }
+
+        finally
+        {
+            swipeContainer.setRefreshing(false);
+        }
     }
 
 }
