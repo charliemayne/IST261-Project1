@@ -221,7 +221,9 @@ public class PostFeedActivity extends AppCompatActivity {
             int textColor = Color.GRAY;
             Typeface textStyle = Typeface.DEFAULT;
 
-            Log.d("Addrows", finalPostContent[k]);
+            if (finalPostContent[k] != null) {
+                Log.d("Addrows", finalPostContent[k]);
+            }
 
             TableRow tr = new TableRow(this);
             tr.setId(1000 + k);
@@ -241,7 +243,7 @@ public class PostFeedActivity extends AppCompatActivity {
             label_middle.setTextSize(18);
             tr.addView(label_middle);
 
-            tl.addView(tr, 0, new TableLayout.LayoutParams(
+            tl.addView(tr, new TableLayout.LayoutParams(
                     TableLayout.LayoutParams.MATCH_PARENT,
                     TableLayout.LayoutParams.WRAP_CONTENT));
 

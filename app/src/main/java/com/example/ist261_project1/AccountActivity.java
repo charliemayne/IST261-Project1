@@ -37,8 +37,7 @@ public class AccountActivity extends AppCompatActivity {
 
                     default:
                         Log.d("MenuBar", "Home");
-                        Intent intent = new Intent(bottomView.getContext(), PostFeedActivity.class);
-                        startActivity(intent);
+                        onBackPressed();
                         break;
                 }
 
