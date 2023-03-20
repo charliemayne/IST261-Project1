@@ -8,12 +8,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class AccountActivity extends AppCompatActivity {
 
     BottomNavigationView bottomView;
+    TextView accountUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,9 @@ public class AccountActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Account");
 
         bottomView = findViewById(R.id.bottomNavigationView1);
+        accountUsername = findViewById(R.id.accountUsername);
+
+        accountUsername.setText(MainActivity.USERNAME);
 
         bottomView.setSelectedItemId(R.id.account);
         bottomView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
