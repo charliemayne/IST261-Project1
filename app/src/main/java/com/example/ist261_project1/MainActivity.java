@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     // check this
     public static final String PUBLIC_IP = "10.32.114.51";
 
+    int userID;
+
     EditText enteruser;
     EditText enterpass;
     Button signIn;

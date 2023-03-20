@@ -85,7 +85,9 @@ public class PostFeedActivity extends AppCompatActivity {
 
                 PostData d2 = new PostData();
                 Arrays.fill(d2.postContents, "");
+                Arrays.fill(d2.postUsers, "");
                 d2.i = 0;
+                d2.j = 0;
 
                 d1 = new PostData();
 
@@ -185,10 +187,13 @@ public class PostFeedActivity extends AppCompatActivity {
                         JSONObject currentPost = response.getJSONObject(index);
 
                         String jsonPostMessage = currentPost.getString("content");
+                        String jsonPostUser = currentPost.getString("user");
 
                         d1.addToPostsContents(jsonPostMessage);
+                        d1.addToPostUsers(jsonPostUser);
 
                         Log.d("Post", jsonPostMessage);
+                        Log.d("PostUser", jsonPostUser);
 
                     }
 
@@ -203,6 +208,14 @@ public class PostFeedActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("PostFeed", "Volley Error" + error.toString());
+
+                String jsonPostMessage = "Error";
+                String jsonPostUser = "Unknown";
+
+                d1.addToPostsContents(jsonPostMessage);
+                d1.addToPostUsers(jsonPostUser);
+
+                Log.d("Error", jsonPostMessage);
             }
         });
         queue.add(requestCan);
@@ -210,6 +223,7 @@ public class PostFeedActivity extends AppCompatActivity {
 
     public void addRows(TableLayout tl) {
         String[] finalPostContent = d1.getPostContent();
+        String[] finalPostUsers = d1.getPostUser();
 
         for (int k = 0; k < postAmount; k++) {
 
@@ -321,7 +335,10 @@ public class PostFeedActivity extends AppCompatActivity {
 
         PostData d2 = new PostData();
         Arrays.fill(d2.postContents, "");
+        Arrays.fill(d2.postUsers, "");
         d2.i = 0;
+        d2.j = 0;
+
 
         d1 = new PostData();
 
