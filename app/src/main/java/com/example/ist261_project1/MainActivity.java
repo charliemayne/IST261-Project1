@@ -26,7 +26,7 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
 
     // check this
-    public static final String PUBLIC_IP = "10.32.114.51";
+    public static final String PUBLIC_IP = "10.32.36.66";
 
     int userID;
 
