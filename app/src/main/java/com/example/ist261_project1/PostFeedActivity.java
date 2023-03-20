@@ -85,9 +85,11 @@ public class PostFeedActivity extends AppCompatActivity {
 
                 PostData d2 = new PostData();
                 Arrays.fill(d2.postContents, "");
-                Arrays.fill(d2.postUsers, "");
+                Arrays.fill(d2.postUsers, 0);
+                Arrays.fill(d2.postUsernames, "");
                 d2.i = 0;
                 d2.j = 0;
+                d2.k = 0;
 
                 d1 = new PostData();
 
@@ -187,9 +189,14 @@ public class PostFeedActivity extends AppCompatActivity {
                         JSONObject currentPost = response.getJSONObject(index);
 
                         String jsonPostMessage = currentPost.getString("content");
+                        int jsonUserId = currentPost.getInt("user_id");
+                        String jsonUsername = currentPost.getString("username");
 
                         d1.addToPostsContents(jsonPostMessage);
+                        d1.addToPostUsers(jsonUserId);
+                        d1.addToPostUsernames(jsonUsername);
 
+                        Log.d("PostUserId", String.valueOf(jsonUserId));
                         Log.d("Post", jsonPostMessage);
 
                     }
@@ -211,9 +218,11 @@ public class PostFeedActivity extends AppCompatActivity {
         queue.add(requestCan);
     }
 
+    @SuppressLint({"SetTextI18n", "ResourceType"})
     public void addRows(TableLayout tl) {
         String[] finalPostContent = d1.getPostContent();
-        String[] finalPostUsers = d1.getPostUser();
+        int[] finalPostUsers = d1.getPostUser();
+        String[] finalPostUsernames = d1.getPostUsernames();
 
         for (int k = 0; k < postAmount; k++) {
 
@@ -234,7 +243,7 @@ public class PostFeedActivity extends AppCompatActivity {
 
             TextView label_middle = new TextView(this);
             label_middle.setId(9000 + k);
-            label_middle.setText(finalPostContent[k]);
+            label_middle.setText("UserID: " + finalPostUsers[k] + "\nUsername: " + finalPostUsernames[k] + "\nPost: " + finalPostContent[k]);
             label_middle.setTextColor(textColor);
             label_middle.setTypeface(textStyle);
             label_middle.setWidth(TableRow.LayoutParams.MATCH_PARENT);
@@ -248,6 +257,7 @@ public class PostFeedActivity extends AppCompatActivity {
                     TableLayout.LayoutParams.WRAP_CONTENT));
 
         }
+
 
     }
 
@@ -289,7 +299,8 @@ public class PostFeedActivity extends AppCompatActivity {
         // store new user data in hashmap
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("content", postText);
-        params.put("user_id", "1");
+        params.put("user_id", String.valueOf(MainActivity.USER_ID));
+        params.put("username", MainActivity.USERNAME);
         Log.d("posttext", postText);
 
         // url to post new user
@@ -327,9 +338,11 @@ public class PostFeedActivity extends AppCompatActivity {
 
         PostData d2 = new PostData();
         Arrays.fill(d2.postContents, "");
-        Arrays.fill(d2.postUsers, "");
+        Arrays.fill(d2.postUsers, 0);
+        Arrays.fill(d2.postUsernames, "");
         d2.i = 0;
         d2.j = 0;
+        d2.k = 0;
 
 
         d1 = new PostData();

@@ -3,10 +3,12 @@ package com.example.ist261_project1;
 public class PostData {
 
     public String[] postContents = new String[500];
-    public String[] postUsers = new String[500];
+    public int[] postUsers = new int[500];
+    public String[] postUsernames = new String[500];
 
     public int i = 0;
     public int j = 0;
+    public int k = 0;
 
     public void addToPostsContents(String postContent)
     {
@@ -19,14 +21,26 @@ public class PostData {
         return postContents;
     }
 
-    public void addToPostUsers(String postUser)
+    public void addToPostUsers(int postUser)
     {
         this.postUsers[j] = postUser;
         j += 1;
     }
 
-    public String[] getPostUser()
+    public int[] getPostUser()
     {
         return postUsers;
     }
+
+    public void addToPostUsernames(String postUsername)
+    {
+        this.postUsernames[k] = postUsername;
+        k += 1;
+    }
+
+    public String[] getPostUsernames()
+    {
+        return postUsernames;
+    }
+
 }
