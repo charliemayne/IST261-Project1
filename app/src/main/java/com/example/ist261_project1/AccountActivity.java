@@ -13,39 +13,39 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class AccountActivity extends AppCompatActivity {
 
-    boolean activityActive;
+    BottomNavigationView bottomView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
 
-        activityActive = true;
+        getSupportActionBar().setTitle("Account");
 
-        BottomNavigationView bottomView = findViewById(R.id.bottomNavigationView1);
+        bottomView = findViewById(R.id.bottomNavigationView1);
 
+        bottomView.setSelectedItemId(R.id.account);
         bottomView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId())
                 {
-                    case R.id.home:
-                        activityActive = false;
+                    case R.id.account:
+                        Log.d("MenuBar", "Here");
+                        break;
+
+                    default:
+                        Log.d("MenuBar", "Home");
                         Intent intent = new Intent(bottomView.getContext(), PostFeedActivity.class);
                         startActivity(intent);
-                        bottomView.setSelectedItemId(R.id.home);
-
-                    case R.id.account:
-                        if (activityActive)
-                        {
-                            Log.d("MenuBar", "already here");
-                        }
+                        break;
                 }
-
 
                 return false;
             }
         });
+
+
     }
 }

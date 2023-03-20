@@ -133,6 +133,8 @@ public class PostFeedActivity extends AppCompatActivity {
 
                     default:
                         Log.d("MenuBar", "Account");
+                        Intent intent = new Intent(bottomView.getContext(), AccountActivity.class);
+                        startActivity(intent);
                         break;
                 }
 
