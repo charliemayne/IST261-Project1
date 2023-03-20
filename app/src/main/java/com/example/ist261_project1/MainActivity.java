@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
     // check this
     public static final String PUBLIC_IP = "10.32.36.66";
 
-    int userID;
+    public static int USER_ID;
+    public static String USERNAME;
 
     EditText enteruser;
     EditText enterpass;
@@ -71,6 +72,10 @@ public class MainActivity extends AppCompatActivity {
                             String dbPassword = object.getString("pass");
 
                             if (dbPassword.equals(enterpass.getText().toString())) {
+                                // save user_id and username
+                                USER_ID = object.getInt("user_id");
+                                USERNAME = object.getString("username");
+
                                 // go to home screen
                                 Intent intent = new Intent(view.getContext(), PostFeedActivity.class);
                                 startActivity(intent);
