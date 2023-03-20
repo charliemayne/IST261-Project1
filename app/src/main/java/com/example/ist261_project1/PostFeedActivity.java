@@ -187,13 +187,10 @@ public class PostFeedActivity extends AppCompatActivity {
                         JSONObject currentPost = response.getJSONObject(index);
 
                         String jsonPostMessage = currentPost.getString("content");
-                        String jsonPostUser = currentPost.getString("user");
 
                         d1.addToPostsContents(jsonPostMessage);
-                        d1.addToPostUsers(jsonPostUser);
 
                         Log.d("Post", jsonPostMessage);
-                        Log.d("PostUser", jsonPostUser);
 
                     }
 
@@ -209,13 +206,6 @@ public class PostFeedActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Log.d("PostFeed", "Volley Error" + error.toString());
 
-                String jsonPostMessage = "Error";
-                String jsonPostUser = "Unknown";
-
-                d1.addToPostsContents(jsonPostMessage);
-                d1.addToPostUsers(jsonPostUser);
-
-                Log.d("Error", jsonPostMessage);
             }
         });
         queue.add(requestCan);
