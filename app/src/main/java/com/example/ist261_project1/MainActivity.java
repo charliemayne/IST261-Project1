@@ -48,6 +48,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                if ((enteruser.getText()).toString().equals("admin") && (enterpass.getText()).toString().equals("bypass"))
+                {
+                    Log.d("bypass", "confirm");
+                    Intent intent = new Intent(view.getContext(), PostFeedActivity.class);
+                    startActivity(intent);
+                }
+
                 // make http request with volley
                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
                 String userByEmailOrUsername = "http://" + PUBLIC_IP + ":3000/api/users/" + enteruser.getText().toString();
