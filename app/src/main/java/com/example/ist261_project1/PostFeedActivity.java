@@ -8,6 +8,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -49,6 +50,8 @@ public class PostFeedActivity extends AppCompatActivity {
     static int postAmount = 0;
 
     PostData d1 = new PostData();
+
+    BottomNavigationView bottomView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,15 +118,27 @@ public class PostFeedActivity extends AppCompatActivity {
             }
         });
 
-        BottomNavigationView bottomView = findViewById(R.id.bottomNavigationView1);
+        bottomView = findViewById(R.id.bottomNavigationView1);
 
+        bottomView.setSelectedItemId(R.id.home);
         bottomView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch(item.getItemId())
+                {
+                    case R.id.home:
+                        Log.d("MenuBar", "Here");
+                        break;
+
+                    default:
+                        Log.d("MenuBar", "Account");
+                        break;
+                }
+
                 return false;
             }
         });
-
 
     }
 
