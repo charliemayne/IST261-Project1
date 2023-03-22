@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     public static int USER_ID;
     public static String USERNAME;
 
+    public static int leafscore;
+
     EditText enteruser;
     EditText enterpass;
     Button signIn;
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                                 // save user_id and username
                                 USER_ID = object.getInt("user_id");
                                 USERNAME = object.getString("username");
+                                leafscore = object.getInt("leafscore");
 
                                 // go to home screen
                                 Intent intent = new Intent(view.getContext(), PostFeedActivity.class);

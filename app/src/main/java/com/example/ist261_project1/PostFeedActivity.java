@@ -19,6 +19,7 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -226,7 +227,7 @@ public class PostFeedActivity extends AppCompatActivity {
 
         for (int k = 0; k < postAmount; k++) {
 
-            //Colors -----------------------
+            //Colors --------------------
             int textColor = Color.GRAY;
             Typeface textStyle = Typeface.DEFAULT;
 
@@ -243,12 +244,12 @@ public class PostFeedActivity extends AppCompatActivity {
 
             TextView label_middle = new TextView(this);
             label_middle.setId(9000 + k);
-            label_middle.setText("UserID: " + finalPostUsers[k] + "\nUsername: " + finalPostUsernames[k] + "\nPost: " + finalPostContent[k]);
+            label_middle.setText("Username: " + finalPostUsernames[k] + "\nPost: " + finalPostContent[k]);
             label_middle.setTextColor(textColor);
             label_middle.setTypeface(textStyle);
             label_middle.setWidth(TableRow.LayoutParams.MATCH_PARENT);
             //label_middle.setPadding(0, 50, 0, 50);
-            label_middle.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            label_middle.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
             label_middle.setTextSize(18);
             tr.addView(label_middle);
 
@@ -269,6 +270,8 @@ public class PostFeedActivity extends AppCompatActivity {
 
         EditText input = new EditText(this);
         input.setInputType(InputType.TYPE_CLASS_TEXT);
+        input.setSingleLine(false);
+        input.setImeOptions(EditorInfo.IME_FLAG_NO_ENTER_ACTION);
         input.getBackground().setColorFilter(Color.parseColor("#167700"),
                 PorterDuff.Mode.SRC_ATOP);
         builder.setView(input);
@@ -301,6 +304,7 @@ public class PostFeedActivity extends AppCompatActivity {
         params.put("content", postText);
         params.put("user_id", String.valueOf(MainActivity.USER_ID));
         params.put("username", MainActivity.USERNAME);
+        params.put("leafscore", String.valueOf(MainActivity.leafscore + 1));
         Log.d("posttext", postText);
 
         // url to post new user
