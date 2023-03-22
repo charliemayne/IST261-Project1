@@ -32,7 +32,7 @@ public class AccountActivity extends AppCompatActivity {
         accountUsername = findViewById(R.id.accountUsername);
         leafScoreText = findViewById(R.id.leafScoreText);
 
-        //accountUsername.setText(MainActivity.USERNAME);
+        accountUsername.setText(MainActivity.USERNAME);
 
         bottomView.setSelectedItemId(R.id.account);
         bottomView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -54,6 +54,9 @@ public class AccountActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+
+        leafScoreText.setText("Leaf Score: " + MainActivity.leaf_score);
 
         leafScoreText.setOnLongClickListener(new View.OnLongClickListener() {
             @Override

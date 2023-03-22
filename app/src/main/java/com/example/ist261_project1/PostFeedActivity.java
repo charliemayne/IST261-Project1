@@ -304,7 +304,7 @@ public class PostFeedActivity extends AppCompatActivity {
         params.put("content", postText);
         params.put("user_id", String.valueOf(MainActivity.USER_ID));
         params.put("username", MainActivity.USERNAME);
-        params.put("leaf_score", String.valueOf(MainActivity.leafscore + 1));
+        params.put("leaf_score", String.valueOf(MainActivity.leaf_score += 1));
         Log.d("posttext", postText);
 
         // url to post new user
