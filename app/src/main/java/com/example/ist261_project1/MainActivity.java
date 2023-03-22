@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static int leafscore;
 
-    public static String datettime;
+    public static String datettime = "date";
 
     EditText enteruser;
     EditText enterpass;
@@ -79,8 +79,8 @@ public class MainActivity extends AppCompatActivity {
                                 // save user_id and username
                                 USER_ID = object.getInt("user_id");
                                 USERNAME = object.getString("username");
-                                leafscore = object.getInt("leafscore");
-                                datettime = object.getString("post_date_time");
+                                leafscore = object.getInt("leaf_score");
+                                //datettime = String.valueOf(object.getLong("post_date_time"));
 
 
                                 // go to home screen
