@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static int leafscore;
 
+    public static String datettime;
+
     EditText enteruser;
     EditText enterpass;
     Button signIn;
@@ -78,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
                                 USER_ID = object.getInt("user_id");
                                 USERNAME = object.getString("username");
                                 leafscore = object.getInt("leafscore");
+                                datettime = object.getString("post_date_time");
+
 
                                 // go to home screen
                                 Intent intent = new Intent(view.getContext(), PostFeedActivity.class);

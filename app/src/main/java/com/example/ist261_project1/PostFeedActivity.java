@@ -244,7 +244,7 @@ public class PostFeedActivity extends AppCompatActivity {
 
             TextView label_middle = new TextView(this);
             label_middle.setId(9000 + k);
-            label_middle.setText("Username: " + finalPostUsernames[k] + "\nPost: " + finalPostContent[k]);
+            label_middle.setText("Posted: "+ MainActivity.datettime +  "\nUsername: " + finalPostUsernames[k] + "\nPost: " + finalPostContent[k]);
             label_middle.setTextColor(textColor);
             label_middle.setTypeface(textStyle);
             label_middle.setWidth(TableRow.LayoutParams.MATCH_PARENT);
