@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     public static String first_name;
     public static String last_name;
 
-    public static String datettime = "date";
+    public static String datettime = "3-22-23";
 
     EditText enteruser;
     EditText enterpass;
