@@ -2,9 +2,11 @@ package com.example.ist261_project1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -73,6 +75,17 @@ public class RegisterActivity extends AppCompatActivity {
                     }
 
                     postDataUsingVolley(firstname, lastname, email, username, password);
+
+                    Runnable task = new Runnable() {
+                        @SuppressLint("SetTextI18n")
+                        public void run() {
+                            onBackPressed();
+                        }
+                    };
+
+                    Handler handler = new Handler();
+                    handler.postDelayed(task, 500);
+
 
                 }
 

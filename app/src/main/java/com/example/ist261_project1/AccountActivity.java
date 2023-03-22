@@ -21,6 +21,8 @@ public class AccountActivity extends AppCompatActivity {
     TextView accountUsername;
     TextView leafScoreText;
 
+    TextView fullnameText;
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +33,11 @@ public class AccountActivity extends AppCompatActivity {
         bottomView = findViewById(R.id.bottomNavigationView1);
         accountUsername = findViewById(R.id.accountUsername);
         leafScoreText = findViewById(R.id.leafScoreText);
+        fullnameText = findViewById(R.id.fullname);
 
         accountUsername.setText(MainActivity.USERNAME);
+        fullnameText.setText(MainActivity.first_name + " " + MainActivity.last_name);
+
 
         bottomView.setSelectedItemId(R.id.account);
         bottomView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

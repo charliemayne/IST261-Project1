@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     public static String USERNAME;
 
     public static int leaf_score;
+    public static String first_name;
+    public static String last_name;
 
     public static String datettime = "date";
 
@@ -79,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
                                 // save user_id and username
                                 USER_ID = object.getInt("user_id");
                                 USERNAME = object.getString("username");
+                                first_name = object.getString("first_name");
+                                last_name = object.getString("last_name");
                                 leaf_score = object.getInt("leaf_score");
 
 

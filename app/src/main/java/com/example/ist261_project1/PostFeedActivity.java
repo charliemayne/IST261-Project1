@@ -15,6 +15,7 @@ import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Html;
 import android.text.InputType;
 import android.util.Log;
 import android.view.MenuItem;
@@ -244,7 +245,11 @@ public class PostFeedActivity extends AppCompatActivity {
 
             TextView label_middle = new TextView(this);
             label_middle.setId(9000 + k);
-            label_middle.setText("Posted: "+ MainActivity.datettime +  "\nUsername: " + finalPostUsernames[k] + "\nPost: " + finalPostContent[k]);
+
+            String sourceString = "<p>Posted: " + MainActivity.datettime +  "</p>" + "<p style='color:#018704;'><strong>" + finalPostUsernames[k] + "</strong></p>" + "<p style='color:black;'>" + finalPostContent[k] + "</p>";
+            label_middle.setText(Html.fromHtml(sourceString));
+
+
             label_middle.setTextColor(textColor);
             label_middle.setTypeface(textStyle);
             label_middle.setWidth(TableRow.LayoutParams.MATCH_PARENT);
